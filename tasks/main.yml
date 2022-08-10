@@ -37,19 +37,20 @@
       - git
       - python3-venv
       - sudo
+      - python3-pip
     can_install_pip3: >-
       {{ (ansible_distribution == 'Debian' and ansible_distribution_version is version('11', '>='))
          or (ansible_distribution == 'Ubuntu' and ansible_distribution_version is version('20.04', '>=')) }}
 
-- name: add pip to required apt packages
-  set_fact:
-    tinypilot_packages: "{{ tinypilot_packages }} + ['python-pip']"
-  when: not can_install_pip3
+# - name: add pip to required apt packages
+#   set_fact:
+#     tinypilot_packages: "{{ tinypilot_packages }} + ['python-pip']"
+#   when: not can_install_pip3
 
-- name: add pip3 to required apt packages
-  set_fact:
-    tinypilot_packages: "{{ tinypilot_packages }} + ['python3-pip']"
-  when: can_install_pip3
+# - name: add pip3 to required apt packages
+#   set_fact:
+#     tinypilot_packages: "{{ tinypilot_packages }} + ['python3-pip']"
+#   when: can_install_pip3
 
 - name: install TinyPilot pre-requisite packages
   apt:
